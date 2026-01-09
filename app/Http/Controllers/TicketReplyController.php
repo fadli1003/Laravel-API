@@ -16,8 +16,10 @@ class TicketReplyController extends Controller
 {
   public function index()
   {
+    $onproccess = Ticket::where('status', 'onprogress')->count();
     return response()->json([
-      'message' => 'hallo world'
+      'message' => 'There is '.$onproccess.' ticket waiting for reply.',
+      'data' => Ticket::all(),
     ]);
   }
 
@@ -34,7 +36,7 @@ class TicketReplyController extends Controller
 
         ], 404);
       }
-      if(Auth::user()->role == 'user' && $ticket->user_id != Auth::user()->id){
+      if(Auth::user()->role === 'user' && $ticket->user_id !== Auth::user()->id){
         return response()->json([
           'message' => 'You are not allowed to access this ticket information.'
         ], 403);
