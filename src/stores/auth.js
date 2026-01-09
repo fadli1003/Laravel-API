@@ -1,34 +1,37 @@
-import { defineStore } from 'pinia'
-import api from '@/lib/api'
+import { defineStore } from 'pinia';
+import api from '@/lib/api';
 
 export const useAuthStore = defineStore('auth', {
-  state: () => ({
-    user: null,
-    isAuthenticated: false
-  }),
+	state: () => ({
+		user: null,
+		isAuthenticated: false,
+		token: '',
+	}),
 
-  actions: {
-    async login(credentials) {
-      const res = await api.post('/auth/login', credentials)
-      this.user = res.data.user
-      this.isAuthenticated = true
-      return res
-    },
+	actions: {
+		async login(credentials) {
+			const res = await api.post('/login', credentials);
+			this.user = res.data.user;
+			this.isAuthenticated = true;
 
-    async logout() {
-      await api.post('/auth/logout')
-      this.user = null
-      this.isAuthenticated = false
-    },
+			return res;
+		},
 
-    async checkAuth() {
-      try {
-        const res = await api.get('/auth/me')
-        this.user = res.data
-        this.isAuthenticated = true
-      } catch {
-        this.isAuthenticated = false
-      }
-    }
-  }
-})
+		async logout() {
+			await api.post('/logout');
+			this.user = null;
+			this.isAuthenticated = false;
+		},
+
+		async checkAuth() {
+			try {
+				const res = await api.get('/me');
+				this.user = res.data;
+				this.isAuthenticated = true;
+			} catch (errs) {
+				this.isAuthenticated = false;
+				console.error(errs);
+			}
+		},
+	},
+});

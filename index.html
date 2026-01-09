@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vite App</title>
+    <title>Ticketing App</title>
+    <script>
+      const theme = localStorage.getItem('theme');
+      if(theme === 'dark'){
+        document.documentElement.classList.add('dark')
+      }
+    </script>
   </head>
   <body>
     <div id="app"></div>

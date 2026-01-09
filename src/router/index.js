@@ -2,6 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
 import AdminDashboard from '@/views/admin/AdminDashboard.vue'
 import LaporanView from '@/views/admin/LaporanView.vue'
+import LoginApp from '@/views/auth/LoginApp.vue'
+import AppRegister from '@/views/auth/AppRegister.vue'
+import ProfilePage from '@/views/auth/ProfilePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,6 +15,16 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/login',
+      name: 'login',
+      component: LoginApp,
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: AppRegister,
+    },
+    {
       path: '/about',
       name: 'about',
       // route level code-splitting
@@ -20,7 +33,7 @@ const router = createRouter({
       component: () => import('@/views/AboutView.vue'),
     },
     {
-      path: '/admin',
+      path: '/admin/dashboard',
       name: 'Dashboard Admin',
       component: AdminDashboard,
     },
@@ -28,7 +41,13 @@ const router = createRouter({
       path: '/admin/laporan',
       name: 'laporan',
       component: LaporanView,
+    },
+    {
+      path: '/me',
+      name: 'profile',
+      component: ProfilePage
     }
+
   ],
 })
 
