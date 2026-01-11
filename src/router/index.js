@@ -4,7 +4,6 @@ import AdminDashboard from '@/views/admin/AdminDashboard.vue'
 import LaporanView from '@/views/admin/LaporanView.vue'
 import LoginApp from '@/views/auth/LoginApp.vue'
 import AppRegister from '@/views/auth/AppRegister.vue'
-import ProfilePage from '@/views/auth/ProfilePage.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,7 +44,7 @@ const router = createRouter({
     {
       path: '/me',
       name: 'profile',
-      component: ProfilePage
+      component: () => import('@/views/auth/ProfilePage.vue')
     }
 
   ],

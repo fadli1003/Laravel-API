@@ -24,5 +24,8 @@
 </script>
 
 <template>
-  <button @click="toggleTheme" class="text-2xl pb-0.5">{{theme === 'dark' ? '🌚' : '🌞'}}</button>
+  <button @click="toggleTheme" class="text-2xl pb-0.5 flex gap-1">
+    <slot />
+    {{theme === 'dark' ? '🌚' : '🌞'}}
+  </button>
 </template>

@@ -45,9 +45,9 @@ const toggleSidebar = () => {
 					<span :class="`${activeSidebar ? 'block ' : 'max-md:hidden'}`">Laporan</span>
 				</RouterLink>
 			</nav>
-			<div class="flex items-center leading-3 mb-5 rounded-md justify-center gap-2 border-gray-300 text-neutral-200 border dark:border-gray-700">
-				<span class="max-md:hidden">Theme</span>
-				<ThemeButton />
+			<div class="flex items-center leading-3 mb-5 rounded-md justify-center gap-2 border-gray-300 dark:text-neutral-200 border dark:border-gray-700">
+
+				<ThemeButton>Theme</ThemeButton>
 			</div>
 		</div>
 	</aside>
