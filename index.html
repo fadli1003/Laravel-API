@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="">
   <head>
+    <style>
+      html.dark { background-color: #0f172a; }
+      html { background-color: #ffffff; } 
+    </style>
+
+    <script>
+      // 1. Ambil tema secepat mungkin
+      const savedTheme = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      
+      const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.style.backgroundColor = '#0f172a';
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.style.backgroundColor = '#ffffff';
+      }
+    </script>
+
     <meta charset="UTF-8">
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticketing App</title>
-    <script>
-      const theme = localStorage.getItem('theme');
-      if(theme === 'dark'){
-        document.documentElement.classList.add('dark')
-      }
-    </script>
+    <!-- <script>
+      (function () {
+        const theme = localStorage.getItem('theme')
+
+        if (
+          theme === 'dark' ||
+          (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark')
+        } else {
+          document.documentElement.classList.remove('dark')
+        }
+      })()
+    </script> -->
   </head>
   <body>
     <div id="app"></div>

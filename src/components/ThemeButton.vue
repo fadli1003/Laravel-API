@@ -1,31 +1,31 @@
 <script setup>
-  import { ref } from 'vue';
+import { ref, watch} from 'vue';
 
-  const root = window.document.documentElement;
-  const initialTheme = () => {
-		const savedTheme = localStorage.getItem('theme');
-		if (savedTheme) {
-			return savedTheme;
-		}
-		return 'light';
-	};
+// Pastikan ada nilai default jika localStorage kosong
+const savedTheme = localStorage.getItem('theme') || 'light';
+const theme = ref(savedTheme);
 
-  const theme = ref(initialTheme())
+// Watcher untuk memantau perubahan theme
+watch(theme, (val) => {
+  const root = document.documentElement;
 
-  const toggleTheme = () => {
-    if (theme.value === 'dark'){
-      theme.value = 'light'
-    }else{
-      theme.value = 'dark'
-    }
-    root.classList.toggle('dark')
-    localStorage.setItem('theme', theme.value)
+  if (val === 'dark') {
+    root.classList.add('dark');
+  } else {
+    root.classList.remove('dark');
   }
+
+  localStorage.setItem('theme', val);
+}); // immediate agar saat refresh, tema langsung diterapkan
+
+const toggleTheme = () => {
+  theme.value = theme.value === 'dark' ? 'light' : 'dark';
+};
 </script>
 
 <template>
   <button @click="toggleTheme" class="text-2xl pb-0.5 flex gap-1">
     <slot />
-    {{theme === 'dark' ? '🌚' : '🌞'}}
+    {{ theme === 'dark' ? '🌚' : '🌞' }}
   </button>
 </template>
