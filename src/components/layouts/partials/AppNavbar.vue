@@ -33,14 +33,13 @@
         </router-link>
 
         <button
-          v-if="authStore.isAuthenticated"
-          @click="authStore.logout()"
+          @click="authStore.logout"
           class="px-4 py-1.5 text-sm font-medium text-white bg-red-500 hover:bg-red-600 rounded-md transition"
         >
           Logout
         </button>
         <router-link
-          v-else
+
           to="/login"
           class="px-4 py-1.5 text-sm font-medium text-gray-300 bg-slate-800 dark:bg-slate-100 dark:text-neutral-800 hover:bg-slate-700 rounded-md duration-300 "
         >

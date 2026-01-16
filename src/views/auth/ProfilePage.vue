@@ -6,7 +6,8 @@ import { onMounted } from 'vue';
 
 const { checkAuth, user } = useAuthStore()
 
-onMounted(()=>checkAuth)
+onMounted(() => checkAuth)
+
 </script>
 
 <template>
