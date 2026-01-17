@@ -6,6 +6,7 @@ use Exception;
 use App\Models\User;
 use App\Enums\UserRole;
 use App\Http\Resources\UserResource;
+use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\RegisterStoreRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         try {
             if(!Auth::guard('web')->attempt($request->only('email', 'password'))){

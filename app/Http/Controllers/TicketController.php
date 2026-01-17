@@ -32,17 +32,13 @@ class TicketController extends Controller
             $query->where('priority', $request->priority);
           }
 
-          if(Auth::user()->role !== 'user'){
+          if(Auth::user()->role === 'user'){
             $query->where('user_id', Auth::user()->id);
           }
 
           $tickets = $query->get();
 
-          return response()->json([
-            'message' => 'list ticket',
-            'role' => Auth::user()->role,
-            'data' => TicketResource::collection($tickets),
-          ]);
+          return response()->json(TicketResource::collection($tickets));
 
         }catch(\Exception $e){
             return response()->json([
